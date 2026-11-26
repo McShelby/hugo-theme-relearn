@@ -6,13 +6,16 @@ window.relearn = window.relearn || {};
 (function () {
   var element = document.querySelector('#R-theme-config');
   var config = JSON.parse(element.textContent);
-
-  // the translations stay globals of their own, that is how our scripts read them
-  Object.keys(config.translations).forEach(function (key) {
-    window['T_' + key] = config.translations[key];
-  });
-  delete config.translations;
   Object.assign(window.relearn, config);
+
+  // the variants come as configured; the variant switcher offers the ones not hidden
+  window.relearn.themevariants = window.relearn.themeVariants
+    .filter(function (variant) {
+      return !variant.hidden;
+    })
+    .map(function (variant) {
+      return variant.identifier;
+    });
 
   // what we keep in the browsers storage is filed below the root of the site as it is
   // served, which may be another host than the configured `baseURL` or the file
@@ -155,11 +158,67 @@ window.relearn.storeVariant = function (variant) {
   window.relearn.variantChannel.postMessage(variant);
 };
 
+// a variant of a script is what the reader selects and what we store, but the page
+// shows the variant its script chooses, asked anew on every page load. the script
+// gets the configuration of all variants and of the variant asked for, which it must
+// not change, and returns the identifier of a configured variant; is that one of a
+// script again, its script is asked in turn. if a script fails, chooses something
+// else or a variant already asked for, the page shows the first variant without a
+// script the reader could have selected
+window.relearn.scriptVariant = function (variant) {
+  return window.relearn.themeVariants.find(function (config) {
+    return config.identifier == variant && config.script;
+  });
+};
+
+window.relearn.resolveVariant = function (variant) {
+  var identifiers = window.relearn.themeVariants.map(function (config) {
+    return config.identifier;
+  });
+  var asked = new Set();
+  var config;
+  while ((config = window.relearn.scriptVariant(variant))) {
+    var script = config.script;
+    asked.add(variant);
+    try {
+      var target = window.relearn.variantScripts[script](window.relearn.themeVariants, config);
+      if (!identifiers.includes(target)) {
+        console.warn('variant script "' + script + '" chose "' + target + '" for variant "' + variant + '", which is none of the configured variants');
+        break;
+      }
+      if (asked.has(target)) {
+        console.warn('variant script "' + script + '" chose "' + target + '" for variant "' + variant + '", which was already asked for');
+        break;
+      }
+      variant = target;
+    } catch (error) {
+      console.warn('variant script "' + script + '" failed for variant "' + variant + '"', error);
+      break;
+    }
+  }
+  if (!config) {
+    return variant;
+  }
+  var targets = window.relearn.themeVariants
+    .filter(function (target) {
+      return !target.script;
+    })
+    .map(function (target) {
+      return target.identifier;
+    });
+  return (
+    window.relearn.themevariants.find(function (identifier) {
+      return targets.includes(identifier);
+    }) ?? targets[0]
+  );
+};
+
 // the cached pages are dropped even if the variant stays the same, as the stylesheet
 // of a custom variant may have changed with it
-window.relearn.changeVariant = function (variant) {
+window.relearn.changeVariant = function (selection) {
   var oldVariant = document.documentElement.dataset.rThemeVariant;
-  window.relearn.storeVariant(variant);
+  window.relearn.storeVariant(selection);
+  var variant = window.relearn.resolveVariant(selection);
   document.documentElement.dataset.rThemeVariant = variant;
   if (oldVariant != variant) {
     document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
@@ -245,7 +304,7 @@ window.relearn.initVariant = function () {
     variant = window.relearn.themevariants[0];
     window.relearn.variantStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
   }
-  document.documentElement.dataset.rThemeVariant = variant;
+  document.documentElement.dataset.rThemeVariant = window.relearn.resolveVariant(variant);
 };
 
 // a change of the variant recolors the whole page at once, so we let the browser fade

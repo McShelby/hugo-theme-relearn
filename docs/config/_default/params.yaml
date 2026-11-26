@@ -102,15 +102,6 @@
     - identifier: relearn-dark
     - identifier: relearn-light
     - type: divider
-      name: Zen
-    - identifier: zen-auto
-      name: Zen Light/Dark
-      auto:
-        - zen-light
-        - zen-dark
-    - identifier: zen-dark
-    - identifier: zen-light
-    - type: divider
       name: Contrast
     - identifier: contrast-auto
       name: Contrast Light/Dark
@@ -119,6 +110,15 @@
         - contrast-dark
     - identifier: contrast-dark
     - identifier: contrast-light
+    - type: divider
+      name: Zen
+    - identifier: zen-auto
+      name: Zen Light/Dark
+      auto:
+        - zen-light
+        - zen-dark
+    - identifier: zen-dark
+    - identifier: zen-light
     - type: divider
       name: Book
     - identifier: book-auto
@@ -174,6 +174,52 @@
     - identifier: blue
     - identifier: green
     - identifier: red
+    - type: divider
+      name: Scripted
+    - identifier: relearn-time
+      name: Relearn Day/Night
+      script: themeVariantByTime
+      params:
+        themeVariantByTimeMappings:
+          '07:00': relearn-light
+          '19:00': relearn-dark
+    - identifier: season
+      name: Season Day/Night
+      script: themeVariantByOccasion
+      params:
+        themeVariantByOccasionMappings:
+          - occasion: season-winter-north-meteorological
+            variant: zen-time
+          - occasion: season-spring-north-meteorological
+            variant: relearn-time
+          - occasion: season-summer-north-meteorological
+            variant: glow-time
+          - occasion: season-autumn-north-meteorological
+            variant: tome-time
+    - identifier: zen-time
+      hidden: true
+      script: themeVariantByTime
+      params:
+        themeVariantByTimeMappings:
+          '07:00': zen-light
+          '19:00': zen-dark
+    - identifier: glow-time
+      hidden: true
+      script: themeVariantByTime
+      params:
+        themeVariantByTimeMappings:
+          '07:00': powder
+          '19:00': neon
+    - identifier: tome-time
+      hidden: true
+      script: themeVariantByTime
+      params:
+        themeVariantByTimeMappings:
+          '07:00': tome-light
+          '19:00': tome-dark
+    - identifier: random
+      name: Random Fun
+      script: themeVariantByRandom
 
   # Keep the selected variant in the session storage.
   # Default: false

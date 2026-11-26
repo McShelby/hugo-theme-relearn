@@ -198,6 +198,10 @@ var variants = {
   },
 
   generateStylesheet: function (variant) {
+    if (window.relearn.scriptVariant(variant)) {
+      alert('There is nothing to be generated as a variant chosen by a script has no colors of its own. Please select the variant it shows directly.');
+      return;
+    }
     var style = null;
     if (!variant.startsWith(this.customvariantprefix)) {
       style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + variant + '"]']);
@@ -247,6 +251,10 @@ var variants = {
 
   changeColor: function (c) {
     var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
+    if (window.relearn.scriptVariant(variant)) {
+      alert('A variant chosen by a script can not be changed. Please select the variant it shows directly to make changes.');
+      return;
+    }
     var customvariantbase = variant;
     var customvariant = variant;
     if (!variant.startsWith(this.customvariantprefix)) {

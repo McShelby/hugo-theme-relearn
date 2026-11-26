@@ -1,4 +1,5 @@
-{{- $nonautothemevariants := slice }}
+{{- $plainthemevariants := slice }}
+{{- $scriptthemevariants := dict }}
 {{- $formathtmlpre := ":root:not([data-r-output-format='print']):not([data-r-theme-variant^='my-custom-'])" }}
 {{- $formathtml := "" }}
 
@@ -77,8 +78,21 @@ Unification run:
 	{{- if eq $themevariant.identifier "auto" }}
 		{{- $themevariant = collections.Merge $themevariant (dict "auto" ($themevariant.auto | default slice)) }}
 	{{- end }}
-	{{- if not (isset $themevariant "auto") }}
-		{{- $nonautothemevariants = $nonautothemevariants | append $themevariant.identifier }}
+	{{- with $themevariant.script }}
+		{{- /* the script's function is reached by its name, so it has to be one */}}
+		{{- if not (findRE `^[A-Za-z_$][A-Za-z0-9_$]*$` . 1) }}
+			{{- errorf "the script '%s' of variant '%s' is not a JavaScript name, instead name it like a JavaScript function; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors/#scripted-variants" . $themevariant.identifier }}
+		{{- end }}
+		{{- if isset $themevariant "auto" }}
+			{{- errorf "the variant '%s' has both, 'script' and 'auto', instead give it only one of them; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors/#scripted-variants" $themevariant.identifier }}
+		{{- end }}
+		{{- if isset $themevariant "print" }}
+			{{- errorf "the variant '%s' has both, 'script' and 'print', instead remove its print variant, it prints with the variant its script chooses; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors/#scripted-variants" $themevariant.identifier }}
+		{{- end }}
+		{{- $scriptthemevariants = merge $scriptthemevariants (dict $themevariant.identifier $themevariant) }}
+	{{- end }}
+	{{- if not (or (isset $themevariant "auto") (isset $themevariant "script")) }}
+		{{- $plainthemevariants = $plainthemevariants | append $themevariant.identifier }}
 		{{- $logoSrc := $defaultLogoSrc }}
 		{{- with $themevariant.params.logo }}
 			{{- $logoSrc = partial "inline/themeVariants/get-logo-src" (dict "src" .src "fallback" $logoSrc) }}
@@ -96,7 +110,7 @@ Generator run:
 - fill up auto property with defaults
 - write variant & chroma CSS string of normal variants and for light and dark of auto variants
 - generate logo variant show/hide CSS
-- pass dividers through without CSS
+- pass dividers and variants of a script through without CSS
 */}}
 {{- define "partials/inline/themeVariants/get-logo-css" }}
 	{{- $variant := . }}
@@ -111,7 +125,7 @@ Generator run:
 {{- define "partials/inline/themeVariants/get-variant" }}
 	{{- $variant := dict }}
 	{{- range .themevariants }}
-		{{- if and (ne .type "divider") (not (isset . "auto")) (eq .identifier $.identifier) }}
+		{{- if and (ne .type "divider") (not (isset . "auto")) (not (isset . "script")) (eq .identifier $.identifier) }}
 			{{- $variant = . }}
 			{{- break }}
 		{{- end }}
@@ -119,8 +133,8 @@ Generator run:
 	{{- return $variant }}
 {{- end }}
 {{- $defaultautothemevariants := slice }}
-{{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
-{{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 1 | default (index $nonautothemevariants 1) | default "relearn-dark") }}
+{{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 0 | default (index $plainthemevariants 0) | default "relearn-light") }}
+{{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 1 | default (index $plainthemevariants 1) | default "relearn-dark") }}
 {{- /* the print variant of a variant is the one of its print parameter or else
 	the site's default; this is followed until a variant names itself, which is
 	the one printed, with the print variables on top; coming back to a variant
@@ -149,11 +163,22 @@ Generator run:
 {{- end }}
 {{- /* who prints with which print variant, for each color scheme or for both */}}
 {{- $printselectors := slice }}
+{{- /* a script may choose a hidden variant, which then has to print like if it
+    was selected by the variant switcher; without any script nobody shows a hidden
+	variant and nobody needs to know what could be chosen */}}
+{{- $hasscripts := gt (len $scriptthemevariants) 0 }}
+{{- $configuredthemevariants := slice }}
 {{- $tempthemevariants = $themevariants }}
 {{- $themevariants = slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
 	{{- $themevariant := $tempthemevariant }}
 	{{- if eq $themevariant.type "divider" }}
+		{{- $themevariants = $themevariants | append $themevariant }}
+		{{- continue }}
+	{{- end }}
+	{{- if isset $themevariant "script" }}
+		{{- /* will be chosen in the browser, so there is nothing to write for it here */}}
+		{{- $configuredthemevariants = $configuredthemevariants | append $themevariant }}
 		{{- $themevariants = $themevariants | append $themevariant }}
 		{{- continue }}
 	{{- end }}
@@ -163,9 +188,10 @@ Generator run:
 		{{- $light := index $themevariant.auto 0 | default (index $defaultautothemevariants 0) }}
 		{{- $dark := index $themevariant.auto 1 | default (index $defaultautothemevariants 1) }}
 		{{- $themevariant = collections.Merge $themevariant (dict "auto" (slice | append $light | append $dark)) }}
+		{{- $configuredthemevariants = $configuredthemevariants | append $themevariant }}
 		{{- $lightthemevariant := partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $light) }}
 		{{- $darkthemevariant := partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $dark) }}
-		{{- if not $themevariant.hidden }}
+		{{- if or (not $themevariant.hidden) $hasscripts }}
 			{{- $lightprint := partial "inline/themeVariants/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $light "default" $defaultprintthemevariant) }}
 			{{- $darkprint := partial "inline/themeVariants/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $dark "default" $defaultprintthemevariant) }}
 			{{- if eq $lightprint $darkprint }}
@@ -197,8 +223,9 @@ Generator run:
 			{{- end }}
 		{{- end }}
 	{{- else }}
+		{{- $configuredthemevariants = $configuredthemevariants | append $themevariant }}
 		{{- $themevariant = partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $themevariant.identifier)}}
-		{{- if not $themevariant.hidden }}
+		{{- if or (not $themevariant.hidden) $hasscripts }}
 			{{- $print := partial "inline/themeVariants/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $themevariant.identifier "default" $defaultprintthemevariant) }}
 			{{- $printselectors = $printselectors | append (dict "print" $print "scheme" "" "selector" $selector) }}
 		{{- end }}
@@ -219,6 +246,15 @@ Generator run:
 	{{- range $hiddenVariants }}
 		{{- $themevariants = $themevariants | append . }}
 	{{- end }}
+{{- end }}
+{{- /* a script can only choose a configured variant, and without one there is no
+	stylesheet written for any variant at all */}}
+{{- if and $hasscripts (eq (len $configuredthemevariants) (len $scriptthemevariants)) }}
+	{{- $identifiers := slice }}
+	{{- range $scriptthemevariants }}
+		{{- $identifiers = $identifiers | append .identifier }}
+	{{- end }}
+	{{- errorf "the variants '%s' have a script but there is no variant they could choose, instead also configure the variants their script returns, hidden if they should not show in the variant switcher; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors/#scripted-variants" (delimit $identifiers "', '") }}
 {{- end }}
 
 {{- /*
@@ -573,7 +609,37 @@ Write yet non-dynamic stuff
 	{{- $url := .RelPermalink }}
 {{- end }}
 
-{{- return (dict "variants" $themevariants "printvariants" $printthemevariants "logolayout" $defaultLogoLayout "css" $css "integrity" $integrity) }}
+{{- /*
+- Write the scripts of the variants, to go in front of theme-head.js, as they have
+  to be there before it applies the variant; each script runs in a scope of its own
+  and hands over the function it is named for
+*/}}
+{{- $scripts := slice }}
+{{- range $identifier, $scriptthemevariant := $scriptthemevariants }}
+	{{- $script := $scriptthemevariant.script }}
+	{{- if not (in $scripts $script) }}
+		{{- $scripts = $scripts | append $script }}
+	{{- end }}
+{{- end }}
+{{- $variantscripts := "" }}
+{{- with $scripts }}
+	{{- $variantscripts = "window.relearn = window.relearn || {};\nwindow.relearn.variantScripts = {};" }}
+	{{- range $script := . }}
+		{{- with resources.Get (printf "/js/%s.js" $script) }}
+			{{- $variantscripts = print $variantscripts
+				"\nwindow.relearn.variantScripts['" $script "'] = (function () {"
+				"\n" (trim .Content "\n\r")
+				"\nreturn " $script ";"
+				"\n})();"
+			}}
+		{{- else }}
+			{{- errorf "\"%s.js\": file of the variant script not found in \"assets/js\"" $script }}
+		{{- end }}
+	{{- end }}
+	{{- $variantscripts = print $variantscripts "\n" }}
+{{- end }}
+
+{{- return (dict "themevariants" $themevariants "printvariants" $printthemevariants "configuredvariants" $configuredthemevariants "variantscripts" $variantscripts "logolayout" $defaultLogoLayout "css" $css "integrity" $integrity) }}
 
 {{- define "partials/inline/themeVariants/get-theme-details" }}
 	{{- $themevariant := .themevariant }}

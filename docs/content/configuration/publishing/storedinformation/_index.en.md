@@ -32,7 +32,7 @@ The theme stores the following information in localstorage or sessionstorage. If
 
 - The selected theme variant to carry over to the following presented pages.
 
-  This can be turned off by only having [one theme variant configured](configuration/branding/colors#single-variant). With [`forceDefaultThemeVariant`](configuration/branding/colors#force-the-default-variant), it is stored in the sessionstorage.
+  This can be turned off by only having [one theme variant configured](configuration/branding/colors#changing-the-variant). With [`forceDefaultThemeVariant`](configuration/branding/colors#force-the-default-variant), it is stored in the sessionstorage.
 
 ## Stored Third Party Information
 

@@ -14,15 +14,8 @@
       {{- warnf "WARNING no key `relearnOutputFormat` found in page store; define a block `storeOutputFormat` for your HTML based output format templates and add `{{- .Store.Set \"relearnOutputFormat\" \"<your-output-format-name>\" }}`; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" }}
     {{- end }}
     {{- $themevariantsdata := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
-    {{- $themevariants := $themevariantsdata.variants }}
     {{- $themecss := $themevariantsdata.css }}
     {{- $themeintegrity := $themevariantsdata.integrity }}
-    {{- $themevariantids := slice }}
-    {{- range $themevariants }}
-      {{- if not (or .hidden (eq .type "divider")) }}
-        {{- $themevariantids = $themevariantids | append .identifier }}
-      {{- end }}
-    {{- end }}
     {{- $wrap := true }}
     {{- if isset site.Params "highlightwrap" }}
       {{- $wrap = site.Params.highlightWrap  }}
@@ -65,9 +58,8 @@
       "relBaseUri" (partial "_relearn/relBaseUri.gotmpl" .)
       "disableInlineCopyToClipboard" (eq $disableInlineCopyToClipboard true)
       "enableBlockCodeWrap" (eq $wrap true)
-      "themevariants" $themevariantids
-      "forceDefaultThemeVariant" (eq site.Params.forceDefaultThemeVariant true)
-      "translations" (dict
+    }}
+    {{- $translations := dict
         "Copy_to_clipboard" (T `Copy-to-clipboard`)
         "Copied_to_clipboard" (T `Copied-to-clipboard`)
         "Link_copied_to_clipboard" (T `Link-copied-to-clipboard`)
@@ -93,7 +85,6 @@
         "Inserted_text_end" (T "Inserted-text-end")
         "Deleted_text_start" (T "Deleted-text-start")
         "Deleted_text_end" (T "Deleted-text-end")
-      )
     }}
     {{- $jsonOptions := dict
       "indent" "  "
@@ -105,7 +96,14 @@
     {{- /* no cache busting for the version index: this URL points into the latest version's build, so its
       hash is unknowable from here and a build time id would pin the very file that must change */}}
     <script type="application/json" id="R-theme-config"{{ with $versionIndexUrl }} data-version-js-url="{{ . | relURL }}"{{ end }}>{{ $config | jsonify $jsonOptions | safeJS }}</script>
-    {{- with partial "asset.gotmpl" "/js/theme-head.js" }}
+    {{- /* the translations stay globals of their own, that is how our scripts read them */}}
+    {{- $headcontent := printf "(function (translations) {\n  Object.keys(translations).forEach(function (key) {\n    window['T_' + key] = translations[key];\n  });\n})(%s);\n" (jsonify $translations) }}
+    {{- $headcontent = print $headcontent (printf "window.relearn = window.relearn || {};\nwindow.relearn.themeVariants = %s;\nwindow.relearn.forceDefaultThemeVariant = %t;\n" (jsonify $themevariantsdata.configuredvariants) (eq site.Params.forceDefaultThemeVariant true)) }}
+    {{- $headcontent = print $headcontent $themevariantsdata.variantscripts }}
+    {{- /* Hugo caches a generated file by its name alone, while the translations, the
+      variants and their scripts differ between the sites of its sites matrix */}}
+    {{- $headjs := slice (resources.FromString (printf "js/theme-head-parts.%s.js" (md5 $headcontent)) $headcontent) (resources.Get "/js/theme-head.js") | resources.Concat (printf "js/theme-head.%s.js" (md5 $headcontent)) }}
+    {{- with partial "asset.gotmpl" $headjs }}
     <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
     {{- end }}
   {{- end }}
