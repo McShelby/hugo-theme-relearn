@@ -144,7 +144,7 @@ After a successful run of the action
 - the [SBOM](#sbom) at `sbom.cdx.json` is regenerated
 - the updated files are committed
 - the milestone is closed
-- the repository is tagged with the version number (eg. `1.2.3`), the main version number (eg. `1.2.x`) and the major version number (eg. `1.x`)
+- the repository is tagged with the version number (eg. `1.2.3`), the main version number (eg. `1.2.x`), the major version number (eg. `1.x`) and `latest`
 - a new entry in the [GitHub release list](https://github.com/McShelby/hugo-theme-relearn/releases) with the according changelog will be created
 - `sbom.cdx.json` is attached to that release, so it can be downloaded by version
 - a signed build provenance attestation is issued for the `sbom.cdx.json` at that tag, unless the signing service is unavailable - a release is never held up for it

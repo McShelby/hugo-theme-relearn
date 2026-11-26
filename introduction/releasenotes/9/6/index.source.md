@@ -16,6 +16,8 @@ weight: -6
 
 - {{% badge style="change" %}}Change{{% /badge %}} The color variant [`neon`](configuration/branding/colors?variant=neon#shipped-variants) changes its look. Its sidebar gradient now spans the screen and continues into the topbar, fading out towards its end.
 
+- {{% badge style="change" %}}Change{{% /badge %}} The [tag](https://github.com/McShelby/hugo-theme-relearn/tags) of the latest release is now called `latest` instead of `x`. If you pin the theme to `x`, pin it to `latest` instead, as `x` was removed.
+
 ### New
 
 - {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) [`book-light`](configuration/branding/colors?variant=book-light#shipped-variants) and [`book-dark`](configuration/branding/colors?variant=book-dark#shipped-variants) bring the colors of Tome without its glow, [`unicorn-light`](configuration/branding/colors?variant=unicorn-light#shipped-variants) and [`unicorn-dark`](configuration/branding/colors?variant=unicorn-dark#shipped-variants) the colors of Neon without its glow. The new [`powder`](configuration/branding/colors?variant=powder#shipped-variants) is the light counterpart to Neon, Unicorn Light with a glow around the page.
@@ -24,4 +26,4 @@ weight: -6
 
 - {{% badge style="new" %}}New{{% /badge %}} A color variant can now be [chosen by a script](configuration/branding/colors#scripted-variants), for example by the current date or the time of day. The theme ships with scripts that choose a variant by the festivals and seasons of the current date, by the time of day or by chance.
 
-- {{% badge style="new" %}}New{{% /badge %}} With the new [`forceDefaultThemeVariant` option](configuration/branding/colors#force-the-default-variant), the reader's selection is kept in the browser's session storage instead of its local storage. As long as there is no selection, the first variant of `themeVariant` is used.
+- {{% badge style="new" %}}New{{% /badge %}} With the new [`forceDefaultThemeVariant` option](configuration/branding/colors#force-the-default-variant), the reader's selection is kept in the browser's session storage instead of its local storage, so every new visit starts with the first variant of `themeVariant` again, even if the reader selected another one before.

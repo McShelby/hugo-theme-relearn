@@ -26,7 +26,7 @@ In addition, the repository contains floating tags for
 
 - the latest bugfix release of a minor version in the form of `7.2.x`
 - the latest feature release of a major version in the form of `7.x`
-- the latest stable release of the theme in the form of `x`
+- the latest stable release of the theme as `latest`
 
 Choose a tag that best fits your needs.
 
