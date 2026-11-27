@@ -40,9 +40,9 @@ A variant can import other variants and effects in two ways, which can be mixed:
 - with `@import` in its file `assets/css/theme-<IDENTIFIER>.css`, like `@import "theme-zen-dark.css";`
 - with the `imports` [parameter](configuration/branding/colors#parameters) of the variant in your project configuration, like `imports = [ 'theme-zen-dark.css' ]`
 
-Both name a file of your site's or the theme's `assets/css` directory, either a variant as `theme-<IDENTIFIER>.css` or an [effect](#effects) as `effect-<NAME>.css`. The files are imported in the given order, so a later one wins over an earlier one.
+Both name a file of your site's or the theme's `assets/css` directory, either a variant as `theme-<IDENTIFIER>.css` or an [effect](#effects) as `effect-<NAME>.css`. The files are imported in the given order, so a later one wins over an earlier one. A variant must not import itself, not even through other variants.
 
-The entries of `imports` are taken as if they were written at the start of the variant's file, before its own imports and settings. With `imports`, the variant's file is optional.
+The entries of `imports` are taken as if they were written at the start of the variant's file, before its own imports and settings, also where another variant imports it. With `imports`, the variant's file is optional.
 
 As an alternative to the example of [import and change](#import-and-change), you can keep only your settings in a file and leave the imports to the `imports` parameter. Such a file can bring your settings to several variants:
 
