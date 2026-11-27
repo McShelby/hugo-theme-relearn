@@ -78,6 +78,21 @@ Unification run:
 	{{- if eq $themevariant.identifier "auto" }}
 		{{- $themevariant = collections.Merge $themevariant (dict "auto" ($themevariant.auto | default slice)) }}
 	{{- end }}
+	{{- if isset $themevariant "imports" }}
+		{{- $imports := slice | append ($themevariant.imports | default slice) }}
+		{{- if isset $themevariant "auto" }}
+			{{- errorf "the variant '%s' has both, 'imports' and 'auto', instead import into its light and dark variant; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/variants/#imports" $themevariant.identifier }}
+		{{- end }}
+		{{- if isset $themevariant "script" }}
+			{{- errorf "the variant '%s' has both, 'imports' and 'script', instead import into the variants its script chooses; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/variants/#imports" $themevariant.identifier }}
+		{{- end }}
+		{{- range $imports }}
+			{{- if not (findRE `^(theme|effect)-[^./\\'"();\s]+\.css$` . 1) }}
+				{{- errorf "the import '%s' of variant '%s' is neither a variant nor an effect, instead name a file like 'theme-<IDENTIFIER>.css' or 'effect-<NAME>.css'; see https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/variants/#imports" . $themevariant.identifier }}
+			{{- end }}
+		{{- end }}
+		{{- $themevariant = collections.Merge $themevariant (dict "imports" $imports) }}
+	{{- end }}
 	{{- with $themevariant.script }}
 		{{- /* the script's function is reached by its name, so it has to be one */}}
 		{{- if not (findRE `^[A-Za-z_$][A-Za-z0-9_$]*$` . 1) }}
@@ -189,8 +204,8 @@ Generator run:
 		{{- $dark := index $themevariant.auto 1 | default (index $defaultautothemevariants 1) }}
 		{{- $themevariant = collections.Merge $themevariant (dict "auto" (slice | append $light | append $dark)) }}
 		{{- $configuredthemevariants = $configuredthemevariants | append $themevariant }}
-		{{- $lightthemevariant := partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $light) }}
-		{{- $darkthemevariant := partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $dark) }}
+		{{- $lightthemevariant := partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $light "imports" (partial "inline/themeVariants/get-variant" (dict "themevariants" $tempthemevariants "identifier" $light)).imports) }}
+		{{- $darkthemevariant := partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $dark "imports" (partial "inline/themeVariants/get-variant" (dict "themevariants" $tempthemevariants "identifier" $dark)).imports) }}
 		{{- if or (not $themevariant.hidden) $hasscripts }}
 			{{- $lightprint := partial "inline/themeVariants/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $light "default" $defaultprintthemevariant) }}
 			{{- $darkprint := partial "inline/themeVariants/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $dark "default" $defaultprintthemevariant) }}
@@ -224,7 +239,7 @@ Generator run:
 		{{- end }}
 	{{- else }}
 		{{- $configuredthemevariants = $configuredthemevariants | append $themevariant }}
-		{{- $themevariant = partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $themevariant.identifier)}}
+		{{- $themevariant = partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $themevariant.identifier "imports" $themevariant.imports)}}
 		{{- if or (not $themevariant.hidden) $hasscripts }}
 			{{- $print := partial "inline/themeVariants/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $themevariant.identifier "default" $defaultprintthemevariant) }}
 			{{- $printselectors = $printselectors | append (dict "print" $print "scheme" "" "selector" $selector) }}
@@ -325,7 +340,7 @@ Print run:
 {{- end }}
 {{- $printdetails := slice }}
 {{- range $printthemevariants }}
-	{{- $printdetails = $printdetails | append (partial "inline/themeVariants/get-theme-details" (dict "themevariant" (dict "identifier" .) "identifier" .)) }}
+	{{- $printdetails = $printdetails | append (partial "inline/themeVariants/get-theme-details" (dict "themevariant" (dict "identifier" .) "identifier" . "imports" (partial "inline/themeVariants/get-variant" (dict "themevariants" $tempthemevariants "identifier" .)).imports)) }}
 {{- end }}
 {{- $printvariants := slice }}
 {{- $printvariablesselectors := slice }}
@@ -650,11 +665,19 @@ Write yet non-dynamic stuff
 	{{- if eq $identifier "relearn" }}
 		{{- warnf "DEPRECATED variant 'relearn' found, use 'relearn-light' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-3-0" }}
 	{{- end }}
+	{{- /* the imports of the variant's configuration are taken as if they were
+		imported at the start of its file, which they make optional */}}
+	{{- $imports := .imports | default slice }}
 	{{- $themecontent := "" }}
+	{{- range $imports }}
+		{{- $themecontent = print $themecontent "@import '" . "';\n" }}
+	{{- end }}
 	{{- with resources.Get (printf "/css/theme-%s.css" $identifier) }}
-		{{- $themecontent = replaceRE `([ \t]*)(:root)` "${1}&${2}" .Content }}
+		{{- $themecontent = print $themecontent (replaceRE `([ \t]*)(:root)` "${1}&${2}" .Content) }}
 	{{- else }}
-		{{- errorf "\"theme-%s.css\": file not found in \"assets/css\"; if you are migrating from a theme version older thant 6.0.0, you have to move it over from \"static/css\"" $identifier }}
+		{{- if not $imports }}
+			{{- errorf "\"theme-%s.css\": file not found in \"assets/css\"; if you are migrating from a theme version older thant 6.0.0, you have to move it over from \"static/css\"" $identifier }}
+		{{- end }}
 	{{- end }}
 	{{- $chroma := "" }}
 	{{- $chromacontent := "" }}
