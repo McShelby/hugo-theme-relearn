@@ -24,7 +24,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} The theme has updated its Mermaid dependency to 12.2.0, which changes how your graphs look. Many diagram types are drawn with Mermaid's new `neo` look and laid out by ELK, and the shipped [color variants](configuration/branding/colors#shipped-variants) now use the new `redux-color` and `redux-dark-color` Mermaid themes.
 
-  To keep the previous appearance, set `--MERMAID-theme` back to `default` or `dark` in your [color variant](configuration/branding/colors#modifying-variants) and add `{ "look": "classic", "layout": "dagre" }` to your [Mermaid initialization options](shortcodes/mermaid#providing-initialization-options-for-the-mermaid-library).
+  To keep the previous appearance, set `--MERMAID-theme` back to `default` or `dark` in your [color variant](configuration/branding/variants#modifying-variants) and add `{ "look": "classic", "layout": "dagre" }` to your [Mermaid initialization options](shortcodes/mermaid#providing-initialization-options-for-the-mermaid-library).
 
 ### New
 

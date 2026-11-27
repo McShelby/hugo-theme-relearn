@@ -12,9 +12,9 @@ title: Colors
 weight: 2
 ---
 
-The Relearn theme offers color variants to change your site's appearance. Each color variant consists of a CSS file and optional settings in your project configuration.
+The Relearn theme offers color variants to change your site's appearance. Each color variant consists of a CSS file, or of the files it [imports](configuration/branding/variants#imports), and optional settings in your project configuration.
 
-You can use the [shipped variants](#shipped-variants), [customize them](#modifying-variants), decorate them with [effects](#effects), or create your own. The [interactive variant generator](configuration/branding/generator) can help you with this.
+You can use the [shipped variants](#shipped-variants), [customize them](configuration/branding/variants#modifying-variants), decorate them with [effects](configuration/branding/variants#effects), or create your own. The [interactive variant generator](configuration/branding/generator) can help you with this.
 
 Once set up in your project configuration, you can switch variants using the selector at the bottom of the menu.
 
@@ -28,16 +28,16 @@ The theme ships with the following set of variants
 | Zen      | [Light](configuration/branding/colors?variant=zen-light#shipped-variants), [Dark](configuration/branding/colors?variant=zen-dark#shipped-variants) | A more relaxed white/grey look, coming with blue accents and a light or dark sidebar and content area |
 | Contrast | [Light](configuration/branding/colors?variant=contrast-light#shipped-variants), [Dark](configuration/branding/colors?variant=contrast-dark#shipped-variants) | [High contrast](configuration/publishing/accessibility), coming with black text on white or white text on black |
 | Book     | [Light](configuration/branding/colors?variant=book-light#shipped-variants), [Dark](configuration/branding/colors?variant=book-dark#shipped-variants) | A book-like look with calligraphic titles, coming with burgundy accents on warm paper tones or garnet accents on dark leather tones |
-| Tome     | [Light](configuration/branding/colors?variant=tome-light#shipped-variants), [Dark](configuration/branding/colors?variant=tome-dark#shipped-variants) | Book with a [glow around the page](#effects) |
+| Tome     | [Light](configuration/branding/colors?variant=tome-light#shipped-variants), [Dark](configuration/branding/colors?variant=tome-dark#shipped-variants) | Book with a [glow around the page](configuration/branding/variants#effects) |
 | Unicorn  | [Light](configuration/branding/colors?variant=unicorn-light#shipped-variants), [Dark](configuration/branding/colors?variant=unicorn-dark#shipped-variants) | A gradient across sidebar and topbar, pastel with magenta accents in Light and vivid in Dark |
-| Glow     | [Powder](configuration/branding/colors?variant=powder#shipped-variants), [Neon](configuration/branding/colors?variant=neon#shipped-variants) | Unicorn Light with a [glow around the page](#effects), Unicorn Dark with [glowing text](#effects) |
+| Glow     | [Powder](configuration/branding/colors?variant=powder#shipped-variants), [Neon](configuration/branding/colors?variant=neon#shipped-variants) | Unicorn Light with a [glow around the page](configuration/branding/variants#effects), Unicorn Dark with [glowing text](configuration/branding/variants#effects) |
 | Retro    | [Learn](configuration/branding/colors?variant=learn#shipped-variants), [Blue](configuration/branding/colors?variant=blue#shipped-variants), [Green](configuration/branding/colors?variant=green#shipped-variants), [Red](configuration/branding/colors?variant=red#shipped-variants) | The default of the old Learn theme, coming with signature light purple, and variations tinted in blue, green or red |
 
 ## Changing the Variant
 
 {{% badge style="option" %}}Option{{% /badge %}} Set the `themeVariant` option to the list of your site's variants. Each entry is a table with the `identifier` of the variant and further [parameters](#parameters).
 
-The `identifier` names the variant's file `assets/css/theme-<IDENTIFIER>.css`, taken from your site or else from the theme.
+The `identifier` names the variant's file `assets/css/theme-<IDENTIFIER>.css`, taken from your site or else from the theme. A variant with [`imports`](configuration/branding/variants#imports) can do without it.
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
@@ -95,7 +95,8 @@ themeVariant = [ 'auto', 'red' ]
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `assets/css/theme-<IDENTIFIER>.css`. |
+| identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `assets/css/theme-<IDENTIFIER>.css`. With `imports`, the file is optional. |
+| imports               | _&lt;empty&gt;_ | The variants and effects [imported](configuration/branding/variants#imports) into this variant, as if its file started with an `@import` of each. It can't be combined with `auto` or `script`. |
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
 | auto                  | _&lt;empty&gt;_ | If set, the variant is an [auto mode variant](#adjust-to-os-settings). The first entry is the color variant for light mode, the second for dark mode. |
 | script                | _&lt;empty&gt;_ | If set, the variant is [chosen by a script](#scripted-variants) of this name and needs no stylesheet of its own. It can't be combined with `auto` or `print`. |
@@ -105,7 +106,7 @@ themeVariant = [ 'auto', 'red' ]
 
 ### Variant Parameters
 
-Some of the site's `params` can be given a different value for a variant by setting it in the variant's `params`. While the variant is active, it takes the place of the site's value.
+Some of the site's `params` can be given a different value for a variant by setting it in the variant's `params`. While the variant is active, it takes the place of the site's value. The most prominent example is the [logo](configuration/branding/logo#variant-specific-logos), which you can override for each variant.
 
 | Name                  | Notes       |
 |-----------------------|-------------|
@@ -117,6 +118,8 @@ themeVariant = [
 	{ identifier = 'neon',         params = { logo = { src = '/images/logo-neon.svg' } } }
 ]
 {{< /multiconfig >}}
+
+The variant's `params` may hold more, like the options of a [scripted variant](#scripted-variants).
 
 ### Dividers
 
@@ -301,102 +304,13 @@ themeVariant = [
 
 A print variant doesn't need to be part of `themeVariant`. If you list it, set it `hidden` to keep it out of the variant switcher.
 
-The style rules of a print variant apply to the print as well. Wrap rules meant for the screen only as shown for [screen-only rules](#screen-only-rules).
-
-## Creating Variants
-
-### Modifying Variants
-
-In case you like a shipped variant but only want to tweak some aspects, you have two choices. **Don't edit the file in the theme's directory!** You will lose the ability to later easily upgrade your theme to a newer version.
-
-1. Copy and change
-
-    You can copy the shipped variant file from the theme's `themes/hugo-theme-relearn/assets/css` directory to the site's `assets/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards, you can use it in your project configuration by the chosen name.
-
-2. Create and import
-
-    You can create a new variant file in the site's `assets/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards, you can use it in your project configuration by the chosen name.
-
-    For example, you want to use the `relearn-light` variant but want to change the syntax highlighting schema to the one used in the `neon` variant. For that, create a new `assets/css/theme-my-branding.css` in your site's directory and add the following lines:
-
-    ````css {title="assets/css/theme-my-branding.css"}
-    @import "theme-relearn-light.css";
-
-    :root {
-      --CODE-theme: neon; /* name of the chroma stylesheet file */
-      --CODE-BLOCK-color: rgba(226, 228, 229, 1); /* fallback color for code text */
-      --CODE-BLOCK-BG-color: rgba(40, 42, 54, 1); /* fallback color for code background */
-    }
-    ````
-
-    Afterwards, put this in your project configuration to use your new variant:
-
-    {{< multiconfig file=hugo section=params >}}
-    themeVariant = 'my-branding'
-    {{< /multiconfig >}}
-
-    In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant while keeping your modifications.
-
-### Effects
-
-Effects decorate a variant beyond its colors. They are shown on screen only and don't apply to print.
-
-The theme ships with the following effects
-
-| Name             | Notes       |
-|------------------|-------------|
-| `text-glowing`   | Makes titles, menu entries and boxes glow. Set `--TEXT-GLOWING-color` for the color of the glow, default is the text color. Made for dark variants. |
-| `page-glowing`   | Lets a glow shine in from the edges of the screen. Set `--PAGE-GLOWING-color` for the color of the glow, default is the primary color. |
-| `season-winter`  | Decorates the page with a winter scene of snow, trees, lights and a lantern. |
-| `backdrop-faded` | Fades the scene behind the content towards the background color, to keep the content readable on top of a scene. Set `--BACKDROP-FADED-color` for the color, default is the background color of the content. |
-| `backdrop-milky` | Lays milky glass over the scene behind the content, blurring it and fading it towards the background color. Set `--BACKDROP-MILKY-color` for the color, default is the background color of the content. |
-
-To use an effect, create your own variant that imports a variant and the effects you want, one after the other. Effects sharing the first part of their name, like `backdrop-faded` and `backdrop-milky`, can't be combined; choose one of them.
-
-````css {title="assets/css/theme-my-winter.css"}
-@import "theme-zen-dark.css";
-@import "effect-season-winter.css";
-@import "effect-backdrop-faded.css";
-````
-
-Afterwards, put this in your project configuration to use your new variant:
-
-{{< multiconfig file=hugo section=params >}}
-themeVariant = 'my-winter'
-{{< /multiconfig >}}
-
-See the effects in action with [Powder](configuration/branding/colors?variant=powder#effects) or [Winter Tome Dark](configuration/branding/colors?variant=tome-dark-winter#effects) of this documentation.
-
-You can write your own effect as `assets/css/effect-<NAME>.css`. An effect can't import other files. Files it refers to with `url()` must be placed in your `assets` directory and given relative to the effect, like `url('../images/my-effect/snow.svg')`. Wrap its rules as shown for [screen-only rules](#screen-only-rules).
-
-### Screen-only Rules
-
-The style rules of a variant also apply when it is used as a [print variant](#theme-variant-print). If your variant contains style rules that are meant for the screen only, wrap them as follows. The print version of a page is shown on screen too, so `@media screen` alone is not enough.
-
-````css {title="assets/css/theme-my-dark.css"}
-:root:not([data-r-output-format='print']) {
-  @media screen {
-    h1 {
-      text-shadow: 0 0 4px rgba( 255, 255, 255, 1 ); /* a glow, only for the screen */
-    }
-  }
-}
-````
-
-### Non-standard Modifications
-
-You may feel tempted to add further modifications besides just setting CSS variables in your custom variant stylesheet.
-
-While this is possible, please note that due to the way the theme uses the variant files, the following will not work:
-
-- `@font-face` rules - they need to be moved to `assets/css/fonts.css`, `assets/css/custom.css` or `layouts/partials/custom-header.html`
-- rules selecting the `html` element - replace `html` with `:root`
+The style rules of a print variant apply to the print as well. Wrap rules meant for the screen only as shown for [screen-only rules](configuration/branding/variants#screen-only-rules).
 
 ## Advanced Topics
 
-### Variant-specific Logos
+### Creating Variants
 
-You can [override the default logo](configuration/branding/logo#variant-specific-logos) of a site for each variant.
+To change a shipped variant, decorate it with effects or build one of your own, see [custom variants](configuration/branding/variants).
 
 ### Linking to a Variant
 

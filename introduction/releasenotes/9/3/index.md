@@ -15,7 +15,7 @@
   }
   ````
 
-- {{% badge style="change" %}}Change{{% /badge %}} The greys of the theme now carry the tint of your [theme variant](configuration/branding/colors#modifying-variants).
+- {{% badge style="change" %}}Change{{% /badge %}} The greys of the theme now carry the tint of your [theme variant](configuration/branding/variants#modifying-variants).
 
   The borders and stripes of tables, the borders of a zoomable Mermaid diagram and of tabs with `style=transparent`, the shadows of cards and images, the hover of buttons, the titles of badges and the tracks of scrollbars now take their color from the variables `BOX-NEUTRAL-color` and `BOX-GREY-color`. `BOX-NEUTRAL-color` inherits from `BOX-GREY-color`. Formerly they were a fixed grey that could not be changed by a variant and was too faint in the high contrast variants.
 
@@ -51,7 +51,7 @@
 
   Many of the changes in this release were made to support this variant.
 
-- {{% badge style="new" %}}New{{% /badge %}} The new color `yellow` can be used as `style` in [every shortcode taking one](shortcodes/callout#parameters) and set with `BOX-YELLOW-color` in your [theme variant](configuration/branding/colors#modifying-variants). Each shipped variant picks a yellow that is readable with its title and text colors.
+- {{% badge style="new" %}}New{{% /badge %}} The new color `yellow` can be used as `style` in [every shortcode taking one](shortcodes/callout#parameters) and set with `BOX-YELLOW-color` in your [theme variant](configuration/branding/variants#modifying-variants). Each shipped variant picks a yellow that is readable with its title and text colors.
 
   To keep it apart from yellow, `orange` - and with it the `note` severity - is now a true orange instead of an amber, and darker so its titles are readable as well.
 

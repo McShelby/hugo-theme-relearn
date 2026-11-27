@@ -14,7 +14,9 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) [`book-light`](configuration/branding/colors?variant=book-light#shipped-variants) and [`book-dark`](configuration/branding/colors?variant=book-dark#shipped-variants) bring the colors of Tome without its glow, [`unicorn-light`](configuration/branding/colors?variant=unicorn-light#shipped-variants) and [`unicorn-dark`](configuration/branding/colors?variant=unicorn-dark#shipped-variants) the colors of Neon without its glow. The new [`powder`](configuration/branding/colors?variant=powder#shipped-variants) is the light counterpart to Neon, Unicorn Light with a glow around the page.
 
-- {{% badge style="new" %}}New{{% /badge %}} [Effects](configuration/branding/colors#effects) decorate a variant beyond its colors. Import them into your own variant to combine a glow, a winter scene or a faded or milky backdrop with any variant.
+- {{% badge style="new" %}}New{{% /badge %}} [Effects](configuration/branding/variants#effects) decorate a variant beyond its colors. Import them into your own variant to combine a glow, a winter scene or a faded or milky backdrop with any variant.
+
+- {{% badge style="new" %}}New{{% /badge %}} A color variant can now list the variants and effects it [imports](configuration/branding/variants#imports) in its configuration, so a variant made of nothing but imports doesn't need a file of its own.
 
 - {{% badge style="new" %}}New{{% /badge %}} A color variant can now be [chosen by a script](configuration/branding/colors#scripted-variants), for example by the current date or the time of day. The theme ships with scripts that choose a variant by the festivals and seasons of the current date, by the time of day or by chance.
 
