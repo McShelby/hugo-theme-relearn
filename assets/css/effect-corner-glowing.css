@@ -1,0 +1,37 @@
+/* lets a glow shine in from the upper end corner of the screen, over topbar
+   and content; the topbar lets it shine through and the content fades into it
+   below the topbar, so text scrolling under it doesn't clip hard;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  --INTERNAL-CORNER-GLOWING-color: var(--CORNER-GLOWING-color, var(--INTERNAL-PRIMARY-color));
+  --R-corner-glowing-position: calc(100% - 5rem) 6rem;
+  --R-corner-glowing-image: radial-gradient(circle 15.5rem at var(--R-corner-glowing-position), color-mix(in srgb, var(--INTERNAL-CORNER-GLOWING-color) 33%, transparent), transparent);
+  --TOPBAR-BG-color: transparent;
+
+  &[dir='rtl'] {
+    --R-corner-glowing-position: 5rem 6rem;
+  }
+
+  @media screen {
+    body {
+      background-attachment: fixed;
+      background-image: var(--R-corner-glowing-image);
+    }
+
+    /* the content scrolls under the mask, so it fades into the glow behind it;
+       the scrollbar sits in the padding, so the ring around the content box is
+       spared by cutting the content box out of the border box; Chrome counts
+       the scrollbar to the padding box, so cutting that out would not spare it */
+    #R-main {
+      mask-clip: content-box, content-box, border-box;
+      mask-composite: add, exclude;
+      mask-image: linear-gradient(transparent, #000 1.5rem), linear-gradient(#000, #000), linear-gradient(#000, #000);
+    }
+
+    /* a mask confines everything inside, even what is fixed to the screen, so
+       it is dropped while a lightbox covers the screen */
+    #R-main:has(.lightbox-back:target, .mermaid.lightbox) {
+      mask-image: none;
+    }
+  }
+}
