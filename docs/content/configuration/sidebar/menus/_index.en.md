@@ -38,6 +38,21 @@ The theme can build menu trees from [the structure of your page files](authoring
 
 ---
 
+## Menu Effects
+
+### Expanders at the Start
+
+The [expanders](#expander-for-submenus) of submenus are shown at the end of their entries. To show them at the start instead, add the `effect-menu-expander-start.css` [effect](configuration/branding/variants#using-effects) to the [imports](configuration/branding/variants#imports) of your variant.
+
+![The menu of the Relearn Light variant](effect-menu-default.png?width=300px&classes=inline)
+![The same menu with the expanders at the start](effect-menu-expander-start.png?width=300px&classes=inline)
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light', imports = [ 'effect-menu-expander-start.css' ] }
+]
+{{< /multiconfig >}}
+
 ## Expand State of Submenus
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can change how submenus appear with `alwaysopen`.

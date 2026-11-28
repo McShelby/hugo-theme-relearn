@@ -3481,15 +3481,12 @@ article ul > li > :is(label, span) > input[type='checkbox']:checked::before {
      middle of the height of the entry */
   height: 1rem;
   inset-inline-start: 0;
-  margin-inline-start: 0.25rem;
+  margin-inline-start: 0.2rem;
   margin-top: 0.25rem;
   position: absolute;
   top: 0;
   width: 1rem;
   z-index: 1;
-}
-#R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label > input {
-  margin-inline-start: -0.075rem;
 }
 #R-sidebar ul.space.collapsible-menu li > label > input {
   margin-top: 0.375rem;
@@ -3502,23 +3499,16 @@ article ul > li > :is(label, span) > input[type='checkbox']:checked::before {
 }
 
 /* the label is the area to click, wide enough to be a target of its own and
-   as high as the entry; it reaches into the indentation, which the outermost
-   level has none of, and its padding keeps the chevron and the underline of
-   the hover where they are */
+   as high as the entry; it sits at the end of the entry, the same on every
+   level, so the expanders line up */
 #R-sidebar ul.collapsible-menu > li > label {
   cursor: pointer;
-  inset-inline-start: 0;
-  margin-inline-start: -0.325rem;
-  padding-inline-end: 0.175rem;
-  padding-inline-start: 0.45rem;
+  inset-inline-end: 0.5rem;
+  padding-inline-end: 0.5rem;
+  padding-inline-start: 0.4rem;
   position: absolute;
   width: 1.5rem;
   z-index: 2;
-}
-#R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label {
-  margin-inline-start: 0;
-  padding-inline-end: 0.5rem;
-  padding-inline-start: 0.125rem;
 }
 #R-sidebar ul.collapsible-menu.enlarge > li > label {
   line-height: 2rem;
@@ -3544,6 +3534,11 @@ article ul > li > :is(label, span) > input[type='checkbox']:checked::before {
 #R-sidebar ul.collapsible-menu > li > :is(a, span) {
   display: inline-block;
   width: 100%;
+}
+
+/* the read icon makes room for the expander at the end of its entry */
+#R-sidebar ul.collapsible-menu > li:has(> label > input) > a .read-icon {
+  inset-inline-end: 2.25rem;
 }
 
 /* menu states for not(.collapsible-menu) */
@@ -4047,16 +4042,11 @@ body a#R-logo:hover *:not(svg, svg *) {
   border-inline-end-color: var(--INTERNAL-MENU-SECTION-ACTIVE-CATEGORY-BORDER-color);
   border-style: solid;
   border-width: 1px;
-  padding-left: calc(1rem - var(--bpx1) * 1px);
-  padding-right: calc(1rem - var(--bpx1) * 1px);
-  width: calc(100% + var(--bpx1) * 1px);
-}
-/* more room between the edge of the box and the expander; the box grows into
-   the indentation, which the outermost level has none of */
-#R-sidebar ul.collapsible-menu ul li.active > a {
-  margin-inline-start: -0.3rem;
-  padding-inline-start: calc(1.3rem - var(--bpx1) * 1px);
-  width: calc(100% + 0.3rem + var(--bpx1) * 1px);
+  /* the box starts a bit after the start of the entry, the text stays where it is */
+  margin-inline-start: 0.5rem;
+  padding-inline-end: calc(1rem - var(--bpx1) * 1px);
+  padding-inline-start: calc(0.5rem - var(--bpx1) * 1px);
+  width: calc(100% - 0.5rem + var(--bpx1) * 1px);
 }
 #R-sidebar ul.morespace.collapsible-menu li.active > a {
   padding-bottom: calc(0.25rem - var(--bpx1) * 1px);

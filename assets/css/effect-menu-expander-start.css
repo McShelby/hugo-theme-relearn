@@ -1,0 +1,56 @@
+/* moves the expanders of the menu from the end of their entries to the start;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    /* the label reaches into the indentation, which the outermost level has
+       none of */
+    #R-sidebar .R-sidebarmenu ul.collapsible-menu > li > label {
+      inset-inline-end: auto;
+      inset-inline-start: 0;
+      margin-inline-start: -0.325rem;
+      padding-inline-end: 0.175rem;
+      padding-inline-start: 0.45rem;
+    }
+    #R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label {
+      margin-inline-start: 0;
+      padding-inline-end: 0.5rem;
+      padding-inline-start: 0.125rem;
+    }
+
+    /* the expander follows its entry in the markup but is reached before it,
+       where the browser supports it */
+    #R-sidebar ul.collapsible-menu > li:has(> label > input) {
+      reading-flow: source-order;
+    }
+    #R-sidebar ul.collapsible-menu > li > label {
+      reading-order: -1;
+    }
+
+    #R-sidebar .R-sidebarmenu ul.collapsible-menu > li > label > input {
+      margin-inline-start: 0.25rem;
+    }
+    #R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label > input {
+      margin-inline-start: -0.075rem;
+    }
+
+    /* the box of the displayed topic starts with its entry, leaving the room
+       before its text to the expander */
+    #R-sidebar ul.collapsible-menu li.active > a {
+      margin-inline-start: 0;
+      padding-inline-start: calc(1rem - var(--bpx1) * 1px);
+      width: calc(100% + var(--bpx1) * 1px);
+    }
+    /* more room between the edge of the box and the expander; the box grows
+       into the indentation, which the outermost level has none of */
+    #R-sidebar ul.collapsible-menu ul li.active > a {
+      margin-inline-start: -0.3rem;
+      padding-inline-start: calc(1.3rem - var(--bpx1) * 1px);
+      width: calc(100% + 0.3rem + var(--bpx1) * 1px);
+    }
+
+    /* the read icon takes back the room it made for the expander */
+    #R-sidebar ul.collapsible-menu > li:has(> label > input) > a .read-icon {
+      inset-inline-end: 1rem;
+    }
+  }
+}
