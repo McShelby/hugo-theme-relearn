@@ -1,0 +1,148 @@
+/* turns dividers of the content into a short line with an ornament in its
+   middle and puts one under every title of the content, in place of the line
+   chapter titles have on the screen and every title has in print;
+   for the screen as well as for print */
+:root {
+  --INTERNAL-DIVIDER-ORNAMENTED-content: var(--DIVIDER-ORNAMENTED-content, '❦');
+  --R-divider-ornamented-color: var(--INTERNAL-PRIMARY-color);
+  --R-divider-ornamented-line-color: var(--INTERNAL-BOX-NEUTRAL-color);
+
+  #R-body hr {
+    border: none;
+    border-radius: 0;
+    height: auto;
+    margin: 1.5rem auto;
+    overflow: visible;
+  }
+
+  #R-body hr::before {
+    content: var(--INTERNAL-DIVIDER-ORNAMENTED-content);
+  }
+
+  #R-main > .flex-block-wrapper article.narrow h1 {
+    border-bottom: none;
+  }
+
+  #R-body #R-main h1 {
+    position: relative;
+  }
+
+  /* the title is clipped, so its divider is drawn inside of it; it is taken out
+     of the flow, so it is no line of the title, and its line is centered on the
+     lower edge of the title */
+  #R-body #R-main h1::after {
+    bottom: -0.75rem;
+    content: var(--INTERNAL-DIVIDER-ORNAMENTED-content);
+    font-style: normal;
+    inset-inline: 0;
+    letter-spacing: normal;
+    margin: 0 auto;
+    position: absolute;
+  }
+
+  /* in print, the topbar of the first printed page and the breadcrumbs of
+     each further one divide it from what follows; on the screen they have no
+     content here and so draw nothing; their line is laid onto theirs */
+  #R-body #R-topbar::after,
+  #R-body .article-breadcrumbs::after {
+    bottom: calc(-0.75rem - 0.5px);
+    content: var(--R-divider-ornamented-page-content, none);
+    inset-inline: 0;
+    position: absolute;
+  }
+
+  /* the line is left out around the ornament instead of being covered by it,
+     so whatever is behind the divider shows through there */
+  #R-body hr,
+  #R-body #R-main h1::after,
+  #R-body #R-topbar::after,
+  #R-body .article-breadcrumbs::after {
+    --R-divider-ornamented-line: linear-gradient(var(--R-divider-ornamented-line-color), var(--R-divider-ornamented-line-color));
+    background:
+      var(--R-divider-ornamented-line) left center / calc(50% - 1.25rem) 1px no-repeat,
+      var(--R-divider-ornamented-line) right center / calc(50% - 1.25rem) 1px no-repeat;
+    /* the line is a background, which browsers leave out when printing */
+    print-color-adjust: exact;
+    text-align: center;
+  }
+
+  #R-body hr,
+  #R-body #R-main h1::after {
+    max-width: 18rem;
+  }
+
+  #R-body hr::before,
+  #R-body #R-main h1::after,
+  #R-body #R-topbar::after,
+  #R-body .article-breadcrumbs::after {
+    color: var(--R-divider-ornamented-color);
+    display: block;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  /* the title ends at the baseline of its letters and a paragraph following it
+     starts at the top of its capitals, so the divider sits centered between
+     them by equal room above and below; together the room is what the theme's
+     default font leaves between them without the divider, so the text stays
+     where it is; part of it grows with the size of the title */
+  &:not([data-r-output-format='print']) {
+    @media screen {
+      #R-body #R-main h1 {
+        margin-bottom: calc(0.2261em + 0.6929rem);
+        padding-bottom: calc(0.2261em + 0.6929rem);
+        text-box: trim-end cap alphabetic;
+      }
+
+      #R-body #R-main h1 + p {
+        text-box: trim-start cap alphabetic;
+      }
+    }
+  }
+
+  /* on paper the divider is text, so it takes the color of the text; the
+     lines under the title, the topbar and the breadcrumbs stay in place but
+     unseen, so they keep their room, and the line of the divider is laid onto
+     them */
+  &[data-r-output-format='print'] {
+    --R-divider-ornamented-color: var(--INTERNAL-MAIN-TEXT-color);
+    --R-divider-ornamented-line-color: var(--INTERNAL-MAIN-TEXT-color);
+    --R-divider-ornamented-page-content: var(--INTERNAL-DIVIDER-ORNAMENTED-content);
+
+    #R-body #R-main h1,
+    #R-body #R-topbar,
+    #R-body .article-breadcrumbs {
+      border-bottom-color: transparent;
+    }
+
+    #R-body #R-topbar,
+    #R-body .article-breadcrumbs {
+      position: relative;
+    }
+
+    #R-body #R-main h1::after {
+      bottom: calc(-0.75rem - 0.5px);
+    }
+  }
+
+  @media print {
+    --R-divider-ornamented-color: var(--INTERNAL-MAIN-TEXT-color);
+    --R-divider-ornamented-line-color: var(--INTERNAL-MAIN-TEXT-color);
+    --R-divider-ornamented-page-content: var(--INTERNAL-DIVIDER-ORNAMENTED-content);
+
+    #R-body #R-main h1,
+    #R-body #R-topbar,
+    #R-body .article-breadcrumbs {
+      border-bottom-color: transparent;
+    }
+
+    #R-body #R-topbar,
+    #R-body .article-breadcrumbs {
+      position: relative;
+    }
+
+    #R-body #R-main h1::after {
+      bottom: calc(-0.75rem - 0.5px);
+    }
+  }
+}
