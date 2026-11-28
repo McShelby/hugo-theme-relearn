@@ -1,0 +1,58 @@
+/* shows callouts light: no fill and no frame, but a bar at the start in the
+   color of the callout, which also colors its title;
+   styles without a color of their own are left as they are, as the bar and the
+   title would vanish with them; the bar of quotes takes the same shape;
+   for the screen as well as for print */
+:root {
+  /* the text stays where it is in the box of the theme, so the frame keeps its
+     width but turns invisible and the paddings are the theme's */
+  #R-body .box.callout:not(.link, .transparent) {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 0;
+    /* a glow around the frame, like the one of glowing text, would draw it again */
+    box-shadow: none;
+    position: relative;
+  }
+
+  /* a border can only round the ends of the bar on its outer side, so the bar
+     is drawn on its own, with ends round on either side */
+  #R-body .box.callout:not(.link, .transparent)::before {
+    background-color: var(--VARIABLE-BOX-color);
+    content: '';
+    inset-block: 0;
+    position: absolute;
+  }
+
+  #R-body .box.callout:not(.link, .transparent)::before,
+  #R-body :is(blockquote, figure.quote)::before {
+    /* the bar is as wide as a border, whose width the browser keeps to whole
+       device pixels; a width of its own would come out a pixel wider or
+       narrower by where the bar sits; its background shows under the border */
+    border-inline-start: 0.25rem solid transparent;
+    border-radius: 0.125rem;
+    width: 0;
+  }
+
+  /* the bar is set off a little from the edge; the text of callouts and quotes
+     stays where the theme puts it */
+  #R-body .box.callout:not(.link, .transparent)::before,
+  #R-body :is(blockquote, figure.quote)::before {
+    inset-inline-end: calc(100% - 0.4rem);
+    inset-inline-start: auto;
+  }
+
+  /* the title is indented less than the text, but more than in the box of the
+     theme */
+  #R-body .box.callout:not(.link, .transparent) > .box-label {
+    border-radius: 0;
+    color: var(--VARIABLE-BOX-color);
+    padding-inline: 0.8rem;
+  }
+
+  #R-body .box.callout:not(.link, .transparent) > .box-content {
+    background-color: transparent;
+    border-radius: 0;
+    color: var(--INTERNAL-MAIN-TEXT-color);
+  }
+}

@@ -85,6 +85,19 @@ Without it, Hugo doesn't recognize the line, so it is printed as text below the 
 
 [See the example](#with-user-defined-color-font-awesome-brand-icon-and-markdown-in-title-and-content) on how the attributes are written.
 
+### Showing Callouts Light
+
+Instead of a filled box with a frame, callouts can show just a bar in their color at the start, with their title in that color. Add the `effect-callout-light.css` [effect](configuration/branding/variants#using-effects) to the [imports](configuration/branding/variants#imports) of your variant.
+
+![A callout of the Relearn Light variant](effect-callout-default.png?width=300px&classes=inline)
+![The same callout with the light callout effect](effect-callout-light.png?width=300px&classes=inline)
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light', imports = [ 'effect-callout-light.css' ] }
+]
+{{< /multiconfig >}}
+
 ## Examples
 
 ### By Severity Using Markdown Callout Syntax
