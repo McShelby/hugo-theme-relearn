@@ -1,0 +1,37 @@
+/* decorates the content with a sun, lavender, wheat and butterflies, after the Poesieland site;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    /* the images are drawn for left to right and mirrored for the other direction */
+    &[dir='rtl'] {
+      --R-poesie-summer-flip: scaleX(-1);
+    }
+
+    /* behind the content column, so the sidebar never covers it, and below the
+       page, so an effect can place itself between the scene and the content; an
+       element of its own, as a background can not be mirrored; the corners sit
+       right in the corners of the column, so what grows in from them starts at
+       its edges, the upper one behind the topbar; the butterflies fly in front of
+       the sun and the plants */
+    #R-body::before {
+      background-image: url('poesie-summer/scatter.svg'), url('poesie-summer/corner.svg'), url('poesie-summer/ground-end.svg'), url('poesie-summer/ground-start.svg');
+      background-position:
+        center,
+        right top,
+        right bottom,
+        left 1rem bottom;
+      background-repeat: no-repeat;
+      background-size:
+        cover,
+        clamp(170px, 18vw, 280px) auto,
+        clamp(150px, 16vw, 260px) auto,
+        clamp(80px, 8vw, 130px) auto;
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      transform: var(--R-poesie-summer-flip, none);
+      z-index: -1;
+    }
+  }
+}

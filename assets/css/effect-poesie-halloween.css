@@ -1,0 +1,36 @@
+/* decorates the content with a moon, bats, a bare tree and pumpkins, after the Poesieland site;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    /* the images are drawn for left to right and mirrored for the other direction */
+    &[dir='rtl'] {
+      --R-poesie-halloween-flip: scaleX(-1);
+    }
+
+    /* behind the content column, so the sidebar never covers it, and below the
+       page, so an effect can place itself between the scene and the content; an
+       element of its own, as a background can not be mirrored; the corners sit
+       right in the corners of the column, so what grows in from them starts at
+       its edges, the upper one behind the topbar */
+    #R-body::before {
+      background-image: url('poesie-halloween/corner.svg'), url('poesie-halloween/ground-end.svg'), url('poesie-halloween/ground-start.svg'), url('poesie-halloween/scatter.svg');
+      background-position:
+        right top,
+        right bottom,
+        left 1rem bottom,
+        center;
+      background-repeat: no-repeat;
+      background-size:
+        clamp(170px, 18vw, 280px) auto,
+        clamp(150px, 16vw, 260px) auto,
+        clamp(80px, 8vw, 130px) auto,
+        cover;
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      transform: var(--R-poesie-halloween-flip, none);
+      z-index: -1;
+    }
+  }
+}

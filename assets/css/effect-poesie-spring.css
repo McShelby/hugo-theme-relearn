@@ -1,0 +1,40 @@
+/* decorates the content with cherry blossoms and their petals, after the Poesieland site;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    /* the images are drawn for left to right and mirrored for the other direction */
+    &[dir='rtl'] {
+      --R-poesie-spring-flip: scaleX(-1);
+    }
+
+    /* behind the content column, so the sidebar never covers it, and below the
+       page, so an effect can place itself between the scene and the content; an
+       element of its own, as a background can not be mirrored; the corners sit
+       right in the corners of the column, so what grows in from them starts at
+       its edges, the upper one behind the topbar; the upper one is sized like the
+       buttons of the topbar, so its blossoms keep to the gaps between their icons;
+       the branches at the end continue beyond the column for a sixth of their
+       drawing, so a resize never shows where they end */
+    #R-body::before {
+      --R-poesie-spring-end-width: clamp(150px, 16vw, 260px);
+      background-image: url('poesie-spring/corner.svg'), url('poesie-spring/ground-end.svg'), url('poesie-spring/ground-start.svg'), url('poesie-spring/scatter.svg');
+      background-position:
+        right -3.2rem top,
+        right calc(var(--R-poesie-spring-end-width) / -5) bottom,
+        left 1rem bottom,
+        center;
+      background-repeat: no-repeat;
+      background-size:
+        19.2rem auto,
+        calc(var(--R-poesie-spring-end-width) * 1.2) auto,
+        clamp(80px, 8vw, 130px) auto,
+        cover;
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      transform: var(--R-poesie-spring-flip, none);
+      z-index: -1;
+    }
+  }
+}
