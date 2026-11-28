@@ -38,6 +38,49 @@ The theme can build menu trees from [the structure of your page files](authoring
 
 ---
 
+## Menu Effects
+
+### Marking the Displayed Entry
+
+Instead of merging the entry of the displayed page into the content, the menu can mark it with a rounded box and a bar in the primary color at its start. Add the `effect-menu-marked.css` [effect](configuration/branding/variants#using-effects) to the [imports](configuration/branding/variants#imports) of your variant.
+
+![The menu of the Relearn Light variant](effect-menu-default.png?width=300px&classes=inline)
+![The same menu with the marked entry effect](effect-menu-marked.png?width=300px&classes=inline)
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light', imports = [ 'effect-menu-marked.css' ] }
+]
+{{< /multiconfig >}}
+
+### Expanders at the Start
+
+The [expanders](#expander-for-submenus) of submenus are shown at the end of their entries. To show them at the start instead, add the `effect-menu-expander-start.css` [effect](configuration/branding/variants#using-effects) to the [imports](configuration/branding/variants#imports) of your variant.
+
+![The menu of the Relearn Light variant](effect-menu-default.png?width=300px&classes=inline)
+![The same menu with the expanders at the start](effect-menu-expander-start.png?width=300px&classes=inline)
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light', imports = [ 'effect-menu-expander-start.css' ] }
+]
+{{< /multiconfig >}}
+
+## Fading Under the Menu Header
+
+The menu is cut off where it scrolls under the menu header. To let it fade out there instead, set `--MENU-HEADER-FADE-height` to the height of the fade in [your own variant](configuration/branding/variants#import-and-change).
+
+![The scrolled menu of the Relearn Light variant](menu-header-default.png?width=300px&classes=inline)
+![The same menu fading under the menu header](menu-header-fade.png?width=300px&classes=inline)
+
+````css {title="assets/css/theme-my-branding.css"}
+@import "theme-relearn-light.css";
+
+:root {
+  --MENU-HEADER-FADE-height: 2rem;
+}
+````
+
 ## Expand State of Submenus
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can change how submenus appear with `alwaysopen`.

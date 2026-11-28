@@ -16,6 +16,8 @@ weight: -6
 
 - {{% badge style="change" %}}Change{{% /badge %}} The color variant [`neon`](configuration/branding/colors?variant=neon#shipped-variants) changes its look. Its sidebar gradient now spans the screen and continues into the topbar, fading out towards its end.
 
+- {{% badge style="change" %}}Change{{% /badge %}} The expanders of [collapsible menus](configuration/sidebar/menus#expander-for-submenus) are now shown at the end of their entries. To [show them at the start](configuration/sidebar/menus#expanders-at-the-start) again, import the `effect-menu-expander-start.css` effect into your variant.
+
 - {{% badge style="change" %}}Change{{% /badge %}} The [tag](https://github.com/McShelby/hugo-theme-relearn/tags) of the latest release is now called `latest` instead of `x`. If you pin the theme to `x`, pin it to `latest` instead, as `x` was removed.
 
 ### New
