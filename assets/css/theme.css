@@ -452,6 +452,17 @@ button::-moz-focus-inner {
   display: flex;
   flex-direction: column;
   flex: 1; /* fill rest of vertical space */
+  /* the menu fades out where it scrolls under the menu header, if the variant
+     asks for it; the stripe at the end spares the border of the sidebar and the
+     scrollbar, at the widest the scrollbar of the classic scrollbar quirks gets */
+  mask-image: linear-gradient(transparent, #000 var(--INTERNAL-MENU-HEADER-FADE-height)), linear-gradient(#000, #000);
+  mask-position:
+    0 0,
+    right 0;
+  mask-repeat: no-repeat;
+  mask-size:
+    100% 100%,
+    15px 100%;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -2095,6 +2106,12 @@ tbody > tr:nth-child(even) > td {
 }
 .topbar-wrapper > .topbar-hidden {
   display: none;
+}
+
+html[dir='rtl'] #R-content-wrapper {
+  mask-position:
+    0 0,
+    left 0;
 }
 
 html[dir='rtl'] .topbar-button-prev i,

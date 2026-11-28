@@ -602,6 +602,7 @@ var variants = {
               { name: 'MENU-HEADER-color', fallback: 'MENU-SECTIONS-LINK-color', tooltip: 'color of menu header' },
               { name: 'MENU-HEADER-BG-color', fallback: 'PRIMARY-color', tooltip: 'background color of menu header' },
               { name: 'MENU-HEADER-BORDER-color', fallback: 'MENU-HEADER-BG-color', tooltip: 'border color between menu header and menu' },
+              { name: 'MENU-HEADER-FADE-height', default: '0rem', tooltip: 'height of the fade of the menu where it scrolls under the menu header' },
               { name: 'MENU-SEARCH-color', default: '#e0e0e0', tooltip: 'text and icon color of search box' },
               { name: 'MENU-SEARCH-HOVER-color', fallback: 'MENU-SEARCH-color', tooltip: 'hovered icon color of search box' },
               { name: 'MENU-SEARCH-BG-color', default: '#323232', tooltip: 'background color of search box' },

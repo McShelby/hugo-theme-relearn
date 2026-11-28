@@ -53,6 +53,21 @@ themeVariant = [
 ]
 {{< /multiconfig >}}
 
+## Fading Under the Menu Header
+
+The menu is cut off where it scrolls under the menu header. To let it fade out there instead, set `--MENU-HEADER-FADE-height` to the height of the fade in [your own variant](configuration/branding/variants#import-and-change).
+
+![The scrolled menu of the Relearn Light variant](menu-header-default.png?width=300px&classes=inline)
+![The same menu fading under the menu header](menu-header-fade.png?width=300px&classes=inline)
+
+````css {title="assets/css/theme-my-branding.css"}
+@import "theme-relearn-light.css";
+
+:root {
+  --MENU-HEADER-FADE-height: 2rem;
+}
+````
+
 ## Expand State of Submenus
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can change how submenus appear with `alwaysopen`.
