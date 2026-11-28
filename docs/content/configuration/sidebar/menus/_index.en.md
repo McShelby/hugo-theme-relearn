@@ -40,6 +40,19 @@ The theme can build menu trees from [the structure of your page files](authoring
 
 ## Menu Effects
 
+### Marking the Displayed Entry
+
+Instead of merging the entry of the displayed page into the content, the menu can mark it with a rounded box and a bar in the primary color at its start. Add the `effect-menu-marked.css` [effect](configuration/branding/variants#using-effects) to the [imports](configuration/branding/variants#imports) of your variant.
+
+![The menu of the Relearn Light variant](effect-menu-default.png?width=300px&classes=inline)
+![The same menu with the marked entry effect](effect-menu-marked.png?width=300px&classes=inline)
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light', imports = [ 'effect-menu-marked.css' ] }
+]
+{{< /multiconfig >}}
+
 ### Expanders at the Start
 
 The [expanders](#expander-for-submenus) of submenus are shown at the end of their entries. To show them at the start instead, add the `effect-menu-expander-start.css` [effect](configuration/branding/variants#using-effects) to the [imports](configuration/branding/variants#imports) of your variant.

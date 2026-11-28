@@ -1,0 +1,38 @@
+/* marks the displayed menu topic with a rounded box and a bar at its start,
+   instead of merging it into the content;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    #R-sidebar li.active > a {
+      background-color: transparent;
+      border-color: transparent;
+      /* the text sits on the menu, not on the content, so it takes the color
+         made for the menu */
+      color: var(--INTERNAL-MENU-SECTIONS-LINK-color);
+      font-weight: bold;
+      /* keeps the box behind the text but in front of the menu */
+      isolation: isolate;
+    }
+
+    /* the expander sits on the menu as well */
+    #R-sidebar li.active > label {
+      color: var(--INTERNAL-MENU-SECTIONS-LINK-color);
+    }
+
+    #R-sidebar li.active > a::before {
+      background-color: color-mix(in srgb, var(--INTERNAL-MENU-SECTIONS-LINK-color) 10%, transparent);
+      /* the start corners are as wide as the bar, so its inner edge stays straight */
+      border-end-end-radius: 6px;
+      border-end-start-radius: 4px 6px;
+      border-inline-start: 4px solid var(--INTERNAL-PRIMARY-color);
+      border-start-end-radius: 6px;
+      border-start-start-radius: 4px 6px;
+      bottom: 0;
+      content: '';
+      inset-inline: 0 0.5rem;
+      position: absolute;
+      top: 0;
+      z-index: -1;
+    }
+  }
+}
